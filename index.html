@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Голосовой Переводчик</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 data-i18n="title">Голосовой Переводчик</h1>
+        </div>
+
+        <div class="main-content">
+            <!-- Выбор языка ввода -->
+            <div class="input-language-selector">
+                <label for="inputLanguage" data-i18n="input-lang">Язык ввода:</label>
+                <select id="inputLanguage">
+                    <option value="ru-RU" selected><span data-i18n="lang-ru">Русский</span></option>
+                    <option value="en-US"><span data-i18n="lang-en">Английский</span></option>
+                    <option value="es-ES"><span data-i18n="lang-es">Испанский</span></option>
+                    <option value="fr-FR"><span data-i18n="lang-fr">Французский</span></option>
+                    <option value="de-DE"><span data-i18n="lang-de">Немецкий</span></option>
+                    <option value="it-IT"><span data-i18n="lang-it">Итальянский</span></option>
+                    <option value="pt-PT"><span data-i18n="lang-pt">Португальский</span></option>
+                    <option value="ja-JP"><span data-i18n="lang-ja">Японский</span></option>
+                    <option value="zh-CN"><span data-i18n="lang-zh">Китайский</span></option>
+                    <option value="ko-KR"><span data-i18n="lang-ko">Корейский</span></option>
+                    <option value="ar-SA"><span data-i18n="lang-ar">Арабский</span></option>
+                    <option value="hi-IN"><span data-i18n="lang-hi">Хинди</span></option>
+                    <option value="uk-UA"><span data-i18n="lang-uk">Украинский</span></option>
+                    <option value="pl-PL"><span data-i18n="lang-pl">Польский</span></option>
+                    <option value="tr-TR"><span data-i18n="lang-tr">Турецкий</span></option>
+                    <option value="sv-SE"><span data-i18n="lang-sv">Шведский</span></option>
+                </select>
+            </div>
+
+            <!-- Языки для перевода -->
+            <div class="target-languages">
+                <label data-i18n="output-langs">Языки перевода:</label>
+                <div class="language-checkboxes">
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="ru"> <span data-i18n="lang-ru">Русский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="en" checked> <span data-i18n="lang-en">Английский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="es" checked> <span data-i18n="lang-es">Испанский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="fr"> <span data-i18n="lang-fr">Французский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="de"> <span data-i18n="lang-de">Немецкий</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="it"> <span data-i18n="lang-it">Итальянский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="pt"> <span data-i18n="lang-pt">Португальский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="ja"> <span data-i18n="lang-ja">Японский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="zh"> <span data-i18n="lang-zh">Китайский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="ko"> <span data-i18n="lang-ko">Корейский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="ar"> <span data-i18n="lang-ar">Арабский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="hi"> <span data-i18n="lang-hi">Хинди</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="uk"> <span data-i18n="lang-uk">Украинский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="pl"> <span data-i18n="lang-pl">Польский</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="tr"> <span data-i18n="lang-tr">Турецкий</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="sv"> <span data-i18n="lang-sv">Шведский</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Кнопка записи -->
+            <button id="recordBtn" class="record-btn" data-i18n="record-btn">
+                Начать
+            </button>
+
+            <!-- Индикатор записи -->
+            <div id="recordingIndicator" class="recording-indicator hidden">
+                <div class="pulse"></div>
+                <span>Запись...</span>
+            </div>
+
+            <!-- Результаты -->
+            <div class="results">
+                <div class="result-section">
+                    <h3 data-i18n="original-text">Исходный текст:</h3>
+                    <div id="originalText" class="text-box">—</div>
+                </div>
+
+                <div id="translationsContainer" class="translations-container">
+                    <!-- Переводы будут добавлены здесь -->
+                </div>
+            </div>
+
+            <!-- Кнопки действий -->
+            <div class="action-buttons">
+                <button id="clearBtn" class="action-btn" data-i18n="clear-btn">
+                    Очистить
+                </button>
+            </div>
+
+            <!-- Статус -->
+            <div id="status" class="status"></div>
+        </div>
+
+        <div class="footer">
+            <p>Создано <strong>whyudontcallme</strong> | <a href="https://t.me/byecash" target="_blank">Telegram: @byecash</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
